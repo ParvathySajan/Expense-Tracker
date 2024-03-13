@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Expense Tracker</h2>
+    <form action="addexp" method="POST">
+        {% csrf_token %}
+        <!--<label>Enter amount to be add: <input type="text" name="initiol"> </label>
+        <input type="submit" value="submit"><br><br>-->
+        <label for="">Expense:</label>
+        <input type="text" name="exp"><br><br>
+        <label for="">Amount:</label>
+        <input type="text" name="amt"><br><br>
+        <input type="submit" value="Add">
+        {{msg}}
+
+    </form>
+    
+    <h3>Expenses</h3>
+    <form action="display">
+        <table border="1">
+            <tr>
+                <th>Expense</th>
+                <th>Amount</th>
+            </tr>
+            {% for i in exp %}
+            <tr>
+                <td>{{i.expense_name}}</td>
+                <td>{{i.amount}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        
+        
+        <input type="submit" value="Display">
+    </form>
+    
+    <h3>Balance</h3>
+    <form action="display2">
+        <table border="1">
+            <tr>
+                <th>Balance</th>
+            </tr>
+            {% for i in blns %}
+            <tr>
+                <td>{{i.balance_amount}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <input type="submit" value="Display Balance">
+    </form>
+    
+    <h3>Credit Cash</h3>
+    <form action="credit" method="POST">
+        {% csrf_token %}
+        <label for="">Enter amount to be credit:</label>
+        <input type="text" name="cramt">
+        <input type="submit" value="Enter">
+        
+        {{cmsg}}
+
+    </form>
+
+    
+</body>
+</html>
